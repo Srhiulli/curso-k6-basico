@@ -1,11 +1,21 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
+import uuid from './libs/uuid.js'
+
+export const options = {
+   vus: 10,
+   duration: '30s',
+   thresholds: {
+      http_req_duration: ['p(95)<2000'],
+      http_req_failed: ['rate<0.01']
+   }
+}
 
 export default function () {
 const url = 'http://localhost:3333/signup'
 
 const payload = JSON.stringify({
-   email:'sasa@sasa.com',
+   email:`${uuid.v4().substring()}@k6performance.com`,
    password:'teste@123'
 })
 const headers = {
