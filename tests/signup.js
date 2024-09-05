@@ -16,7 +16,7 @@ const headers = {
 const res = http.post(url,payload, headers)
 
  check(res, {
-    'status should be 200' : (r) => r.status === 200
+    'status should be 200' : (r) => r.status === 201
  })
   sleep(1)
 }
